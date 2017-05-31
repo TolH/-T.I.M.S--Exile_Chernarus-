@@ -1,6 +1,6 @@
 # -T.I.M.S-
 
-For Arma 3 Epoch: https://epochmod.com/forum/
+For Arma 3 : Exile mod
 
 # Info:
 
