@@ -1,0 +1,17 @@
+//============================================////============================================//
+	//MESSAGE TARGETED TOWN
+	_closesttown = (nearestLocations [getMarkerPos "Missionmarker1",["NameCityCapital","NameCity"],600]) select 0;
+	_town_name = text _closesttown;
+	//hint format ["%1", _town_name];
+		_targetStartText = format ["<t align='center' size='2.2'>ZomBrella Corporation</t><br/><t size='1.5' color='#08b000' align='center'>The cleansing...</t><br/>____________________<br/>The responsible of the virus propagation are killing everything in their sight!<br/><br/><t size='1.2' color='#08b000' align='center'> Get yourselves over to (%1) and KILL 'em all!</t><br/>", _town_name];
+		GlobalHint = _targetStartText; publicVariable "GlobalHint"; hint parseText GlobalHint;
+		showNotification = ["NewMain", "ZomBrella Corporation DETECTED."]; publicVariable "showNotification";
+		//WAIT 12 SECONDS BEFORE SENDING NEXT MESSAGE
+		uiSleep 10;
+		showNotification = ["NewSub", "Destroy their communication system."]; publicVariable "showNotification";	
+//============================================////============================================//
+	//MESSAGE
+		_radioTowerDownText = "<t align='center' size='2.2'>Sub Objective</t><br/><t size='1.5' color='#08b000' align='center'>Ennemy Communication Deactivated!</t><br/>____________________<br/>The enemy radio tower has been destroyed! Well done.<br/><br/><t size='1.2' color='#08b000' align='center'> The enemy cannot call in air support now!</t><br/>";
+		GlobalHint = _radioTowerDownText; hint parseText GlobalHint; publicVariable "GlobalHint";
+		showNotification = ["CompletedSub", "Enemy communication Deactivated!"]; publicVariable "showNotification";
+//============================================////============================================//

@@ -1,0 +1,228 @@
+#define true 1
+#define false 0
+
+///////////////////////////////////////////////////////////////////////////////
+// Server Settings - Modify at will
+///////////////////////////////////////////////////////////////////////////////
+author = "Exile Mod Team";
+onLoadName = "Exile Mod";
+onLoadMission= "www.exilemod.com";
+loadScreen = "exile_assets\texture\mod\logo.paa";
+disableChannels[] = {0, 2};
+OnLoadIntro = "";
+OnLoadIntroTime = false;
+OnLoadMissionTime = false;
+
+class Header
+{
+    gameType = Survive; // Do NOT change this
+    minPlayers = 1;
+    maxPlayers = 100;
+};
+
+///////////////////////////////////////////////////////////////////////////////
+// Exile Settings - Do not change these!
+///////////////////////////////////////////////////////////////////////////////
+forceRotorLibSimulation = 2;
+skipLobby = 1;
+joinUnassigned = 1;
+respawn = "BASE";
+respawnDelay = 120;
+respawnDialog = 0;
+respawnOnStart = 0;
+respawnButton = 1;
+respawnTemplates[] = {"Exile"};
+corpseManagerMode = 0;
+corpseLimit = 20;
+corpseRemovalMinTime = 1800;
+corpseRemovalMaxTime = 3600;
+wreckManagerMode = 0;
+wreckLimit = 2;
+wreckRemovalMinTime = 60;
+wreckRemovalMaxTime = 360;
+scriptedPlayer = 1;
+disabledAI = 1;
+enableItemsDropping = 0;
+briefing = 0;
+debriefing = 0;
+allowFunctionsLog = 1;
+enableDebugConsole = 0;
+allowFunctionsRecompile = 0;
+showSquadRadar = 0;
+showUAVFeed = 0;
+reviveDelay = 6;
+reviveForceRespawnDelay = 3;
+reviveBleedOutDelay = 120;
+
+showHUD[] =
+{
+    true,   // Scripted HUD (same as showHUD command)
+    true,   // Vehicle + soldier info
+    true,   // Vehicle radar
+    true,   // Vehicle compass
+    true,   // Tank direction indicator
+    false,  // Commanding menu
+    false,  // Group Bar
+    true,   // HUD Weapon Cursors
+    false   // Squad Radar
+};
+
+#include "config.cpp"
+
+class CfgRemoteExec
+{
+    class Functions
+    {
+        mode = 1;
+        jip = 0;
+
+        class ExileServer_system_network_dispatchIncomingMessage
+        {
+            allowedTargets = 2;
+        };
+    };
+
+    class Commands
+    {
+		mode = 0;
+		jip = 0;
+    };
+};
+//============================================////============================================//
+class aissp_configs
+{
+#include "LV\config_aissp.hpp"
+};
+//============================================////============================================//
+//====================================//====================================//
+//Notifications
+class CfgNotifications
+{
+//====================================//
+	class Default
+	{
+		title = ""; 			// Tile displayed as text on black background. Filled by arguments.
+		iconPicture = ""; 		// Small icon displayed in left part. Colored by "color", filled by arguments.
+		iconText = ""; 			// Short text displayed over the icon. Colored by "color", filled by arguments.
+		description = ""; 		// Brief description displayed as structured text. Colored by "color", filled by arguments.
+		color[] = {1,1,1,1}; 	// Icon and text color
+		duration = 8; 			// How many seconds will the notification be displayed
+		priority = 0; 			// Priority; higher number = more important; tasks in queue are selected by priority
+		difficulty[] = {}; 		// Required difficulty settings. All listed difficulties has to be enabled
+	};
+//====================================//
+	class NewMain
+	{
+		title = "PRIMARY OBJECTIVE";
+		description = "%1";
+		iconPicture = "media\images\notificons\main_objective.paa";
+		color[] = {1, 0.81, 0.06, 1};
+		duration = 8;
+		priority = 9;
+	};
+	class CompletedMain
+	{
+		title = "PRIMARY OBJECTIVE COMPLETED";
+		description = "%1";
+		iconPicture = "media\images\notificons\main_objective_completed.paa";
+		color[] = {1, 0.81, 0.06, 1};
+		duration = 7;
+		priority = 9;
+	};
+//====================================//
+	class NewSub
+	{
+		title = "NEW SUB-OBJECTIVE";
+		description = "%1";
+		iconPicture = "media\images\notificons\sub_objective.paa";
+		color[] = {1, 0.81, 0.06, 1};
+		priority = 8;
+	};
+	class CompletedSub
+	{
+		title = "SUB-OBJECTIVE COMPLETED";
+		description = "%1";
+		iconPicture = "media\images\notificons\sub_objective_completed.paa";
+		color[] = {1, 0.81, 0.06, 1};
+		priority = 9;
+	};
+//====================================//
+	class NewSecondary
+	{
+		title = "SECONDARY OBJECTIVE";
+		description = "%1";
+		iconPicture = "media\images\notificons\sub_objective.paa";
+		color[] = {1, 0.81, 0.06, 1};
+		duration = 7;
+		priority = 8;
+	};
+
+	class CompletedSecondary
+	{
+		title = "SECONDARY OBJECTIVE COMPLETED";
+		description = "%1";
+		iconPicture = "media\images\notificons\sub_objective_completed.paa";
+		color[] = {1, 0.81, 0.06, 1};
+		duration = 7;
+		priority = 9;
+	};
+//====================================//
+	class NewOptional
+	{
+		title = "NEW OPTIONAL OBJECTIVE";
+		description = "%1";
+		iconPicture = "media\images\notificons\side_mission.paa";
+		color[] = {1, 0.81, 0.06, 1};
+		duration = 7;
+		priority = 9;
+	};
+	class CompletedOptional
+	{
+		title = "OPTIONAL OBJECTIVE COMPLETED";
+		description = "%1";
+		iconPicture = "media\images\notificons\side_mission_completed.paa";
+		color[] = {1, 0.81, 0.06, 1};
+		duration = 7;
+		priority = 9;
+	};
+	class OptionalFailed
+	{
+		title = "OPTIONAL OBJECTIVE FAILED";
+		description = "%1";
+		iconPicture = "media\images\notificons\failed.paa";
+		color[] = {1, 0.81, 0.06, 1};
+		duration = 7;
+		priority = 9;
+	};
+//====================================//
+	class RadioTowerCAS
+	{
+		title = "RadioTower";
+		description = "%1";
+		iconPicture = "media\images\notificons\enemyJetinbound.paa";
+		color[] = {1, 0.81, 0.06, 1};
+		priority = 9;
+		duration = 8;
+	};
+//====================================//
+	class RadioTowerTakenByAI
+	{
+		title = "RadioTower Taken By AI";
+		description = "%1";
+		iconPicture = "media\images\notificons\failed.paa";
+		color[] = {1, 0.81, 0.06, 1};
+		duration = 7;
+		priority = 9;
+	};
+	class RadioTowerTakenByPlayer
+	{
+		title = "RadioTower Taken By Player";
+		description = "%1";
+		iconPicture = "media\images\notificons\side_mission_completed.paa";
+		color[] = {1, 0.81, 0.06, 1};
+		duration = 7;
+		priority = 9;
+	};
+};
+//====================================//
+//====================================//====================================//
